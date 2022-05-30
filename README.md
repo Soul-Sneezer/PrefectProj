@@ -9,4 +9,4 @@ it's Turing complete, as it should be. The only thing that is really
 missing is a proper standard library, and classes if OOP is your thing.
 
 
-- Not made for production use, at least performance-wise. A version implemented in C would be far superior in that regard. Also, it's an interpreter, not a compiler.
+- Not made for production use, at least performance-wise. A version implemented in C would be far superior in that regard. Also, this version is interpreted, not compiled.
