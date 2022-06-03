@@ -82,6 +82,10 @@ public class Main {
     {
         report(line, "", message);
     }
+    
+    static void warning(int line, String message) {
+        System.err.println("[line " + line + "] Warning: " + message);
+    }
 
     private static void report(int line, String where, String message)
     {
