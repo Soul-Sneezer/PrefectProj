@@ -8,6 +8,7 @@ import java.util.Stack;
 public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     private final Interpreter interpreter;
     private final Stack<Map<String, Boolean>> scopes = new Stack<>();
+    private final Stack<Map<String, Token>> usages = new Stack<>();
     private FunctionType currentFunction = FunctionType.NONE;
     private boolean insideLoop = false;
 
@@ -278,11 +279,20 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     private void beginScope()
     {
         scopes.push(new HashMap<String, Boolean>());
+        usages.push(new HashMap<String, Token>());
     }
 
     private void endScope()
     {
         scopes.pop();
+        usages.peek().forEach((k, v) ->
+        {
+            if(v != null)
+            {
+                Main.warning(v.line, "Local variable " + k + " is never used.");
+            }
+        });
+        usages.pop();
     }
 
     private void declare(Token name)
@@ -291,11 +301,13 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
             return;
 
         Map<String, Boolean> scope = scopes.peek();
+        Map<String, Token> usage = usages.peek();
         if(scope.containsKey(name.lexeme))
         {
             Main.error(name, "Already a variable with this name in this scope.");
         }
         scope.put(name.lexeme, false);
+        usage.put(name.lexeme, name);
     }
 
     private void define(Token name)
@@ -311,6 +323,7 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
         {
             if (scopes.get(i).containsKey(name.lexeme))
             {
+                usages.get(i).put(name.lexeme, null);
                 interpreter.resolve(expr, scopes.size() - 1 - i);
                 return;
             }
