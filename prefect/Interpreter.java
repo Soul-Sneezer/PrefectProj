@@ -74,6 +74,8 @@ public class Interpreter implements Expr.Visitor<Object>,
                        return Double.parseDouble(input);
                     } catch(NumberFormatException exception)
                     {
+                        if(input.equals("false"))
+                          return false;
                         return input;
                     }
 
