@@ -558,6 +558,7 @@ public class Parser {
             case GREATER:
             case LESS_EQUAL:
             case LESS:
+            case MODULUS:
                 throw error(previous(), "Missing valid right operand.");
         }
         throw error(peek(), "Expect expression.");
