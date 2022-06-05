@@ -404,13 +404,13 @@ public class Interpreter implements Expr.Visitor<Object>,
 
                 if(left instanceof String && right instanceof String)
                 {
-                    return (String)left + (String)right;
+                    return stringify(left) + stringify(right);
                 }
 
                 if((left instanceof String || right instanceof String) &&
                    (left instanceof Double || right instanceof Double))
                 {
-                    return (String)left + (String)right;
+                    return stringify(left) + stringify(right);
                 }
 
                 throw new RuntimeError(expr.operator, "Operands must be numbers or strings.");
