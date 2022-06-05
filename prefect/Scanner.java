@@ -79,6 +79,9 @@ public class Scanner {
             case '.':
                 addToken(DOT);
                 break;
+            case '%':
+                addToken(MODULUS);
+                break;
             case '-':
                 addToken(MINUS);
                 break;
