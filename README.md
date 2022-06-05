@@ -16,7 +16,7 @@ Example program written in Prefect:
 ```
 // round, print, read are functions that are supposed to be part of the "standard library" :')
 
-fun heapify(numbers, n, i)
+define heapify(numbers, n, i)
 {
     var largest = i;
     var l = 2 * i + 1;
@@ -38,7 +38,7 @@ fun heapify(numbers, n, i)
     }
 }
 
-fun heapSort(numbers, n)
+define heapSort(numbers, n)
 {
     for (var i = round(n / 2) - 1; i >= 0; i = i - 1)
     {
