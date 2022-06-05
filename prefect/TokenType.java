@@ -2,7 +2,7 @@ package prefect;
 
 enum TokenType {
     // Single-characters tokens.
-    LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE, COMMA, DOT,
+    LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE, COMMA, DOT, MODULUS,
     MINUS, PLUS, COLON, SEMICOLON, SLASH, STAR, QMARK, LEFT_BRACKET, RIGHT_BRACKET,
 
     // One or two character tokens.
