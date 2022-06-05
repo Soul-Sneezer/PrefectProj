@@ -402,12 +402,12 @@ public class Parser {
 
     private Expr factor()
     {
-        if(match(SLASH, STAR))
+        if(match(SLASH, STAR, MODULUS))
         {
             error(previous(), "Missing left operand.");
         }
         Expr expr = unary();
-        while (match(SLASH, STAR))
+        while (match(SLASH, STAR, MODULUS))
         {
             Token operator = previous();
             Expr right = unary();
