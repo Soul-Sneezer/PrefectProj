@@ -424,6 +424,9 @@ public class Interpreter implements Expr.Visitor<Object>,
             case SLASH:
                 checkNumberOperand(expr.operator, left, right);
                 return (double)left / (double)right;
+            case MODULUS:
+                checkNumberOperand(expr.operator, left, right);
+                return (double)left % (double)right;
         }
 
         // Unreachable.
