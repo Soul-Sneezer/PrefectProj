@@ -297,7 +297,6 @@ public class Interpreter implements Expr.Visitor<Object>,
         if(lookUpVariable(expr.name, expr) != null)
             return lookUpVariable(expr.name, expr);
 
-        System.out.println(expr.name);
         return lookUpDictionaryObject(expr.name, expr);
 
         //throw new RuntimeError(expr.name, "Variable has not been initialized.");
